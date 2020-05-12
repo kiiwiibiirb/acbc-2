@@ -1,11 +1,42 @@
-function love.load()
+require "button" -- Require the library so we can use it
 
+function love.load()
+    local flags = { -- Setting up a table called flags with data for our button
+        -- Position and size.
+        xPos = 10,
+        yPos = 10,
+        width = 100,
+        height = 50,
+        
+        -- Colour for the button
+        color = {
+            red = 0,
+            green = 0,
+            blue = 255,
+        },
+
+        -- Settings for the border.
+        border = {
+            width = 2,
+            red = 0,
+            green = 0,
+            blue = 0,
+        },
+
+        onClick = { -- The onClick function; decides what happens when the button gets clicked
+            func = print, -- When clicked, call the function print...
+            args = {"hai"}, -- with the argument 'hai'
+        },
+    }
+
+    id = button.spawn(flags) -- Spawns the button
 end
 
-function love.update(dt)
 
+function love.update(dt)
+    button.update() -- Updates all the buttons
 end
 
 function love.draw()
-    love.graphics.print('This is just some filler for the actual program. I don\'t know what else to say so here I guess I\'ll give you a kiwi bird fact.\nThey can lay eggs one third the size of themselves! Isn\'t that huge?!', 0, 300)
+    button.draw() -- Draws all the buttons.
 end
